@@ -12,7 +12,7 @@ def main():
     baseurl = "https://movie.douban.com/top250?start="
     # 1.爬取网页
     datalist = getDate(baseurl)
-    dbpath = "movie.db"
+    dbpath = "./movie.db"
     # 3.保存数据
     saveData2DB(datalist, dbpath)
 
@@ -23,7 +23,7 @@ findLink = re.compile(r'<a href="(.*?)">')  # 创建正则表达式对象，表�
 # 影片图片
 findImgSrc = re.compile(r'img.*src="(.*?)"', re.S)  # re.S:让换行符包含在字符中
 # 影片片名
-findTiele = re.compile(r'<span class="title">(.*)</span>')
+findTitle = re.compile(r'<span class="title">(.*)</span>')
 # 影片评分
 findRating = re.compile(r'<span class="rating_num" property="v:average">(.*)</span>')
 # 影片评价人数
@@ -59,13 +59,13 @@ def getDate(baseurl):
             data.append(imgSrc)
 
             # 添加片名
-            titles = re.findall(findTiele, item)  # 片名可能只有一个中文名，没有外国名
+            titles = re.findall(findTitle, item)  # 片名可能只有一个中文名，没有外国名
             if len(titles) == 2:
-                ctitle = titles[0]  # 添加中文名
-                data.append(ctitle)
-                otitle = titles[1].replace("/", "")  # 去掉无关的符号
-                otitle = re.sub('\s+', '', otitle)  # NBSP
-                data.append(otitle)  # 添加外国名
+                c_title = titles[0]  # 添加中文名
+                data.append(c_title)
+                o_title = titles[1].replace("/", "")  # 去掉无关的符号
+                o_title = re.sub('\s+', '', o_title)  # NBSP
+                data.append(o_title)  # 添加外国名
             else:
                 data.append(titles[0])
                 data.append('')  # 外国名字留空
@@ -124,7 +124,7 @@ def askURL(url):
 
 
 # 保存数据(excel)
-def saveDate(datalist, savepath):
+def saveDate(datalist, save_path):
     book = xlwt.Workbook(encoding="utf-8", style_compression=0)  # 创建workbook对象
     sheet = book.add_sheet('豆瓣电影Top250', cell_overwrite_ok=True)  # 创建工作表
     col = ("电影详情链接", "图片链接", "电影中文名", "影片外文名", "评分", "评价人数", "概况", "相关信息")
@@ -134,7 +134,7 @@ def saveDate(datalist, savepath):
         data = datalist[i]
         for j in range(0, 8):
             sheet.write(i + 1, j, data[j])  # 数据
-    book.save(savepath)  # 保存
+    book.save(save_path)  # 保存
     print("打印成功！")
 
 
@@ -184,7 +184,6 @@ def init_db(dbpath):
 
 if __name__ == "__main__":
     # 调用函数
-    # main()
+    main()
     askURL("https://movie.douban.com/top250?start=")
     print("爬取完毕")
-

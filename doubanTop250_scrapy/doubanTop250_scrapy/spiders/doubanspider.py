@@ -1,11 +1,9 @@
-import re
 import scrapy  # 导入scrapy包
-from bs4 import BeautifulSoup
 from scrapy import Request
 from ..items import DoubanItem
 
 
-class DoubanMivieTop250(scrapy.Spider):
+class DoubanMovieTop250(scrapy.Spider):
     name = 'douban_top250'
     # start_urls = ['https://movie.douban.com/top250']
     headers = {
