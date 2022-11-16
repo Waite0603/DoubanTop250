@@ -51,7 +51,7 @@ fig = plt.figure(1)
 plt.imshow(wc)
 plt.axis('off')  # 是否显示坐标轴
 
-plt.show()  # 显示生成的词云图片
-
 # 输出词云图片到文件
 plt.savefig(r'.\static\assets\img\word.jpg', dpi=500)
+
+plt.show()  # 显示生成的词云图片
