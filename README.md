@@ -19,3 +19,9 @@ python v3.10
 
 pip install -r requirements.txt
 ```
+
+![image](https://user-images.githubusercontent.com/75354124/216378248-dfdd85c9-a8f5-4d6c-ae77-7be058f6cdc1.png)
+
+![image](https://user-images.githubusercontent.com/75354124/216378360-64ffb286-ef5d-48f2-a6aa-bb1f09c50690.png)
+
+![image](https://user-images.githubusercontent.com/75354124/216378592-ad5b1cff-f516-4c69-8985-c291a27c01c2.png)
